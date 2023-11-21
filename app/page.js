@@ -1,7 +1,11 @@
+import "@/app/globals.css";
+
 const page = () => {
   return (
-    <div>page</div>
-  )
-}
+    <>
+      <div>Hi there</div>
+    </>
+  );
+};
 
-export default page
+export default page;
