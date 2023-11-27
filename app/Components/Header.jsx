@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Wrapper from "./Wrapper";
 import Image from "next/image";
 import logo from "@/public/logo.png";
@@ -11,32 +11,34 @@ import { IoIosClose } from "react-icons/io";
 import { CgMenuRightAlt } from "react-icons/cg";
 import MenuMobile from "./MenuMobile";
 
-
 const Header = () => {
   const [mobileMenu, setmobileMenu] = useState(false);
   const [showCatMenu, setshowCatMenu] = useState(false);
   const [show, setshow] = useState("translate-y-0");
-  const [lastScrollY, setlastScrollY] = useState(0);
+  // const [lastScrollY, setlastScrollY] = useState(0);
+
+  // useEffect(() => {
+  //   window.addEventListener("scroll", controlNavbar);
+  //   return () => {
+  //     window.removeEventListener("scroll", controlNavbar);
+  //   };
+  // }, []);
 
   return (
     <html lang="en">
       <body>
-        
         <header
           className={`w-full h-[50px] md:h-[80px] bg-white
-     flex items-center justify-between z-20 sticky top-o transition-transform
+     flex items-center z-20 sticky top-o transition-transform
       duration-300 ${show}`}
         >
           <Wrapper className="h-[60px] flex justify-between items-center">
             <Link href={"/"}>
-              <Image src={logo} className="w-[80px] md:w-[120px]" />
+              <Image src={logo} className="w-[80px] md:w-[120px]" alt="logo" />
             </Link>
 
             <Menu />
-            {mobileMenu&&
-             <MenuMobile/>
-            }
-           
+            {mobileMenu && <MenuMobile />}
 
             <div className="flex items-center gap-2 text-[black]">
               <div
@@ -70,26 +72,23 @@ const Header = () => {
                 className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center 
           cursor-pointer relative items-center"
               >
-
                 <div className="md:hidden">
-                {mobileMenu ? (
-                  <IoIosClose
-                    className="text-[20px]"
-                    onClick={() => setmobileMenu(false)}
-                  />
-                ) : (
-                  <CgMenuRightAlt
-                    className="text-[25px]"
-                    onClick={() => setmobileMenu(true)}
-                  />
-                )}
+                  {mobileMenu ? (
+                    <IoIosClose
+                      className="text-[20px]"
+                      onClick={() => setmobileMenu(false)}
+                    />
+                  ) : (
+                    <CgMenuRightAlt
+                      className="text-[25px]"
+                      onClick={() => setmobileMenu(true)}
+                    />
+                  )}
                 </div>
-
               </div>
             </div>
           </Wrapper>
         </header>
-        
       </body>
     </html>
   );
