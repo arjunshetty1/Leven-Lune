@@ -6,6 +6,7 @@ const Wrapper = ({children ,className}) => {   // children will be the by defaul
     <div className={`w-full px-5 md:px-10  ${className}`}>
       {children}
       </div>
+      
 
   )
 }

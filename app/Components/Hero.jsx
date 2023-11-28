@@ -13,6 +13,7 @@ const Hero = () => {
       <ReactSimplyCarousel
         activeSlideIndex={activeSlideIndex}
         onRequestChange={setActiveSlideIndex}
+        
         itemsToShow={1}
         itemsToScroll={1}
         forwardBtnProps={{
