@@ -3,9 +3,9 @@ import Link from "next/link";
 
 const data = [
   { id: 1, name: "Home", url: "/" },
-  { id: 2, name: "Products", url: "/about" },
-  { id: 3, name: "Collections", url: "/" },
-  { id: 4, name: "Contact Us", url: "/contact" },
+  { id: 2, name: "Products", url: "/" },
+  { id: 3, name: "Collections", url: "/collections" },
+  { id: 4, name: "Contact Us", url: "/" },
 ];
 
 const Menu = () => {
