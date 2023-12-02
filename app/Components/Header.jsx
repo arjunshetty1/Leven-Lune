@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Wrapper from "./Wrapper";
 import Image from "next/image";
 import logo from "@/public/logo.png";
@@ -55,19 +55,21 @@ const Header = () => {
                 </div>
               </div>
 
-              <div
-                className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center 
-          cursor-pointer relative items-center"
-              >
-                <BsCart className="text-[15px] md:text-[20px]" />
+              <Link href={"/cart"}>
                 <div
-                  className="h-[14px] md:[18px] min-w-[14px] md:min-w-[18px] 
+                  className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center 
+          cursor-pointer relative items-center"
+                >
+                  <BsCart className="text-[15px] md:text-[20px]" />
+                  <div
+                    className="h-[14px] md:[18px] min-w-[14px] md:min-w-[18px] 
           rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center
           px-[2px] md:px-[5px]"
-                >
-                  5
+                  >
+                    5
+                  </div>
                 </div>
-              </div>
+              </Link>
               <div
                 className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center 
           cursor-pointer relative items-center"

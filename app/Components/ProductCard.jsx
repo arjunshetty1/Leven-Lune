@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 const ProductCard = () => {
   return (
-    <Link href={'/'} className='w-[18rem] transition-transform duration-300 hover:scale-105'>
+    <Link href={'/product'} className='w-[18rem] transition-transform duration-300 hover:scale-105'>
         <div className='w-[18rem] '>
         <Image src={prd} className='object-cover h-[18rem] rounded-lg' / >
         </div>
