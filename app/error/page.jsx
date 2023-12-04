@@ -59,9 +59,7 @@ const page = () => {
       </div>
 
       <footer class="mt-auto text-center py-5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p class="text-sm text-gray-500">© All Rights Reserved. 2023.</p>
-        </div>
+        
       </footer>
     </div>
   );

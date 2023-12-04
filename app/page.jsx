@@ -1,10 +1,31 @@
+"use client";
+
 import "@/app/globals.css";
 import Hero from "./Components/Hero";
 import Wrapper from "./Components/Wrapper";
 import ProductCard from "./Components/ProductCard";
-
+import { ProductFetch } from "../utils/api";
+import { useEffect, useState } from "react";
 
 const page = () => {
+
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await ProductFetch();
+        setData(result);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log("wow",data);
+
   return (
     <>
       <div className="h-full">
@@ -19,14 +40,14 @@ const page = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 my-14 px-5 md:px-0">
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
           </div>
         </Wrapper>
       </div>
