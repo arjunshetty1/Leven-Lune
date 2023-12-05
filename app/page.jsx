@@ -8,14 +8,14 @@ import { ProductFetch } from "../utils/api";
 import { useEffect, useState } from "react";
 
 const page = () => {
-
-  const [data, setData] = useState(null);
+  const [info, setInfo] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await ProductFetch();
-        setData(result);
+        setInfo(result);
+        console.log("here is the info inside the hook ", result);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -23,8 +23,6 @@ const page = () => {
 
     fetchData();
   }, []);
-
-  console.log("wow",data);
 
   return (
     <>
@@ -36,19 +34,17 @@ const page = () => {
             <p className=" text-center text-xl w-[800px]">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
               culpa odio? Inventore vitae incidunt temporibus rem.
+              <h1>{info?.data[0].attributes.name}</h1>
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 my-14 px-5 md:px-0">
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
+            {info?.data.map((value) => {
+              return <ProductCard key={value.id} value={value} />;
+              
+            })}
           </div>
+          <h1>Damn{info?.data[2].attributes.name}</h1>
         </Wrapper>
       </div>
     </>
@@ -56,3 +52,10 @@ const page = () => {
 };
 
 export default page;
+
+// export async function getServerSideProps() {
+//   const result = await ProductFetch();
+//   return {
+//     props: { result },
+//   };
+// }
