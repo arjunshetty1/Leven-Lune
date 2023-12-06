@@ -1,22 +1,25 @@
-import ProductDetailsCarpusel from "../Components/ProductDetailsCarpusel";
-import RelatedPrdScroller from "../Components/RelatedPrdScroller";
-import Wrapper from "../Components/Wrapper";
+"use client";
 
+import ProductDetailsCarpusel from "../../Components/ProductDetailsCarpusel";
+import RelatedPrdScroller from "../../Components/RelatedPrdScroller";
+import Wrapper from "../../Components/Wrapper";
+import { usePathname } from "next/navigation";
 
 const Product = () => {
+  const router = usePathname();
+  let productName = router.split("/").pop();
+  
   return (
     <div className="w-full md:py-20">
       <Wrapper>
         <div className="flex flex-col md:flex-row md:justify-center px-10 align-middle items-center">
-
           <div className="left-side md:w-2/4">
             <ProductDetailsCarpusel />
           </div>
 
-
           <div className="right-side md:w-2/4">
             <div className="flex flex-col gap-1">
-              <p className="text-2xl font-semibold">Korean Nekcless</p>
+              <p className="text-2xl font-semibold">{productName}</p>
               <p className="text-sm font-semibold">T&E Designers</p>
               <p className="text-sm font-semibold mt-4">MRP : $10</p>
               <p className="text-[grey]">incl of all taxes</p>
@@ -81,16 +84,26 @@ const Product = () => {
               </a>
             </div>
 
-            <div >
-  <p className="mt-6">Product Details</p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates deleniti iste quasi possimus architecto perspiciatis cum, corporis consectetur vero! Natus laboriosam voluptate cum amet laborum architecto dicta dolor deleniti corrupti repudiandae, optio minima fugit nam magnam at accusantium dolorum aliquid velit blanditiis accusamus reiciendis ducimus a. Porro nihil impedit rerum a pariatur minus libero quasi omnis, hic ea iure error odit voluptatibus reprehenderit ex tenetur aspernatur itaque repellat commodi. Optio quibusdam cumque magnam ipsum soluta ex dolor dolorem possimus 
-    adipisci!</p>
-</div>
+            <div>
+              <p className="mt-6">Product Details</p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Voluptates deleniti iste quasi possimus architecto perspiciatis
+                cum, corporis consectetur vero! Natus laboriosam voluptate cum
+                amet laborum architecto dicta dolor deleniti corrupti
+                repudiandae, optio minima fugit nam magnam at accusantium
+                dolorum aliquid velit blanditiis accusamus reiciendis ducimus a.
+                Porro nihil impedit rerum a pariatur minus libero quasi omnis,
+                hic ea iure error odit voluptatibus reprehenderit ex tenetur
+                aspernatur itaque repellat commodi. Optio quibusdam cumque
+                magnam ipsum soluta ex dolor dolorem possimus adipisci!
+              </p>
+            </div>
           </div>
         </div>
 
         <div>
-       <RelatedPrdScroller/>
+          <RelatedPrdScroller />
         </div>
       </Wrapper>
     </div>

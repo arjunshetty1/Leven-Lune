@@ -1,5 +1,5 @@
 import React from 'react'
-import CollectionCard from '../Components/CollectionCard'
+import CollectionCard from '../../Components/CollectionCard'
 CollectionCard
 const page = () => {
   return (
