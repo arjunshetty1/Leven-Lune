@@ -49,10 +49,3 @@ const page = () => {
 };
 
 export default page;
-
-// export async function getServerSideProps() {
-//   const result = await ProductFetch();
-//   return {
-//     props: { result },
-//   };
-// }

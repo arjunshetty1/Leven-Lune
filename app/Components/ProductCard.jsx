@@ -17,16 +17,16 @@ const ProductCard = ({ value }) => {
         />
       </div>
       <div className="px-1 mt-1">
-        <p className="pt-2 font-medium">{value.attributes.name}</p>
+        <p className="pt-2 font-medium">{value?.attributes?.name}</p>
         <div className="flex justify-between mt-2">
           <div className="flex gap-4">
-            <p>{value.attributes.price}</p>
-            <p className="line-through">{value.attributes.original_price}</p>
+            <p>{value?.attributes?.price}</p>
+            <p className="line-through">{value?.attributes.original_price}</p>
           </div>
           <div className="text-[green] text-[14px]">
             {DiscountPrice(
-              value.attributes.price,
-              value.attributes.original_price
+              value?.attributes.price,
+              value?.attributes.original_price
             )}
             %
           </div>
