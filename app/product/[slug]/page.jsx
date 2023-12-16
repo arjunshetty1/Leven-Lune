@@ -10,6 +10,9 @@ const Product = () => {
   const [info, setinfo] = useState(null);
   const path = usePathname().split("/").pop();
   const DecodedUrl = decodeURIComponent(path);
+  const [selectType, setselectType] = useState("");
+  const [showerrmess, setshowerrmess] = useState(true);
+  const [err, seterr] = useState();
 
   const fetchData = async () => {
     try {
@@ -50,30 +53,41 @@ const Product = () => {
 
                 <div className="flex md:flex-row flex-col gap-3 mt-4">
                   <button
+                    onClick={() => {
+                      setshowerrmess(false);
+                      setselectType("Anti Tarnish");
+                    }}
                     class={` w-[6.8rem] whitespace-nowrap bg-transparent hover:bg-[grey] text-blue-600 font-semibold hover:text-white py-1 px-2 
                     border border-[red] hover:border-transparent rounded1 ${
                       info?.data[0]?.attributes?.type?.data[0]?.anti_tarnish
-                        ? "cursor-pointer"
+                        ? "cursor-pointer  focus:ring focus:ring-[black]"
                         : "cursor-not-allowed"
-                    }`}
+                    } `}
                   >
                     Anti-Tarnish
                   </button>
 
                   <button
+                    onClick={() => {
+                      setshowerrmess(false);
+                      setselectType("Regular");
+                    }}
                     class=" w-24  whitespace-nowrap bg-transparent hover:bg-blue-500 text-blue-600 font-semibold hover:text-white py-1 px-2 
                     border border-blue-500 hover:border-transparent rounded"
                   >
                     Regular
                   </button>
                 </div>
-                <p className="text-[red] mt-3">
-                  Selected Type is not avialable
-                </p>
               </div>
             </div>
+
+            {err && <p className="text-[red] mt-3">Please select the type</p>}
+
             <div className="flex flex-col gap-4">
               <a
+                onClick={() => {
+                  showerrmess ? seterr(true) : seterr(false);
+                }}
                 href="#_"
                 class="inline-flex overflow-hidden mt-8 w-52 text-white bg-gray-900 rounded group"
               >
