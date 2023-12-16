@@ -1,14 +1,29 @@
 "use client";
-
+import { ProductViewFetch } from "@/utils/api";
 import ProductDetailsCarpusel from "../../Components/ProductDetailsCarpusel";
 import RelatedPrdScroller from "../../Components/RelatedPrdScroller";
 import Wrapper from "../../Components/Wrapper";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const Product = () => {
-  const router = usePathname();
-  let productName = router.split("/").pop();
-  
+  const [info, setinfo] = useState(null);
+  const path = usePathname().split("/").pop();
+  const DecodedUrl = decodeURIComponent(path);
+
+  const fetchData = async () => {
+    try {
+      const result = await ProductViewFetch(DecodedUrl);
+      setinfo(result);
+    } catch (error) {
+      console.log("error occured in the product page", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div className="w-full md:py-20">
       <Wrapper>
@@ -19,9 +34,13 @@ const Product = () => {
 
           <div className="right-side md:w-2/4">
             <div className="flex flex-col gap-1">
-              <p className="text-2xl font-semibold">{productName}</p>
+              <p className="text-2xl font-semibold">
+                {info?.data[0]?.attributes?.name}
+              </p>
               <p className="text-sm font-semibold">T&E Designers</p>
-              <p className="text-sm font-semibold mt-4">MRP : $10</p>
+              <p className="text-sm font-semibold mt-4">
+                MRP : ₹ {info?.data[0]?.attributes?.price}
+              </p>
               <p className="text-[grey]">incl of all taxes</p>
               <p className="text-[grey]">(also inclues all taxes and duties)</p>
             </div>
@@ -31,11 +50,16 @@ const Product = () => {
 
                 <div className="flex md:flex-row flex-col gap-3 mt-4">
                   <button
-                    class=" cursor-not-allowed w-[6.8rem] whitespace-nowrap bg-transparent hover:bg-[grey] text-blue-600 font-semibold hover:text-white py-1 px-2 
-                    border border-[red] hover:border-transparent rounded"
+                    class={` w-[6.8rem] whitespace-nowrap bg-transparent hover:bg-[grey] text-blue-600 font-semibold hover:text-white py-1 px-2 
+                    border border-[red] hover:border-transparent rounded1 ${
+                      info?.data[0]?.attributes?.type?.data[0]?.anti_tarnish
+                        ? "cursor-pointer"
+                        : "cursor-not-allowed"
+                    }`}
                   >
                     Anti-Tarnish
                   </button>
+
                   <button
                     class=" w-24  whitespace-nowrap bg-transparent hover:bg-blue-500 text-blue-600 font-semibold hover:text-white py-1 px-2 
                     border border-blue-500 hover:border-transparent rounded"
@@ -87,16 +111,7 @@ const Product = () => {
             <div>
               <p className="mt-6">Product Details</p>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptates deleniti iste quasi possimus architecto perspiciatis
-                cum, corporis consectetur vero! Natus laboriosam voluptate cum
-                amet laborum architecto dicta dolor deleniti corrupti
-                repudiandae, optio minima fugit nam magnam at accusantium
-                dolorum aliquid velit blanditiis accusamus reiciendis ducimus a.
-                Porro nihil impedit rerum a pariatur minus libero quasi omnis,
-                hic ea iure error odit voluptatibus reprehenderit ex tenetur
-                aspernatur itaque repellat commodi. Optio quibusdam cumque
-                magnam ipsum soluta ex dolor dolorem possimus adipisci!
+                {info?.data[0]?.attributes?.description[0]?.children[0]?.text}
               </p>
             </div>
           </div>

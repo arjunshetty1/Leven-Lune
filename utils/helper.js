@@ -4,3 +4,8 @@ export const DiscountPrice = (Price, OriginalPrice) => {
 
   return percentage.toFixed(0);
 };
+
+
+const array = [4,8,2,9,1]
+const result = array.sort();
+console.log(result)

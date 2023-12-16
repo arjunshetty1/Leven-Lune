@@ -13,7 +13,7 @@ export const ProductFetch = async () => {
     const response = await axios.get(API_URL, options);
     return response.data;
   } catch (error) {
-    console.log("Error Occured", error);
+    console.log("Error Occured", error);  
   }
 };
 
@@ -47,6 +47,26 @@ export const CollectionSpecificFetch = async (slug) => {
     const response = await axios.get(
       `http://127.0.0.1:1337/api/products?populate=*&[filters][categories][name][$eq]=${slug}`,
       options3
+    );
+    return response.data;
+  } catch (error) {
+    console.log("Error occured while fetching collections", error);
+  }
+};
+
+//----------------------------------
+
+const options4 = {
+  headers: {
+    Authorization: "Bearer " + API_TOKEN,
+  },
+};
+
+export const ProductViewFetch = async (slug) => {
+  try {
+    const response = await axios.get(
+      `http://127.0.0.1:1337/api/products?populate=*&[filters][name][$eq]=${slug}`,
+      options4
     );
     return response.data;
   } catch (error) {

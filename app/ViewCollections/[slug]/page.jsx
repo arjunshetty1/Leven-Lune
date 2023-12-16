@@ -1,4 +1,5 @@
 "use client";
+
 import ProductCard from "@/app/Components/ProductCard";
 import Wrapper from "@/app/Components/Wrapper";
 import { CollectionSpecificFetch } from "@/utils/api";
@@ -16,7 +17,6 @@ const page = () => {
       try {
         const result = await CollectionSpecificFetch(decodedString);
         setinfo(result);
-        console.log(result);
       } catch (error) {
         console.log(error);
       }

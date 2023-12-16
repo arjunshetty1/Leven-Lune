@@ -5,7 +5,7 @@ import { DiscountPrice } from "@/utils/helper";
 const ProductCard = ({ value }) => {
   return (
     <Link
-      href={`/product/${value?.attributes?.slug}`}
+      href={`/product/${value?.attributes?.name}`}
       className="w-[18rem] transition-transform duration-300 hover:scale-105"
     >
       <div className="w-[18rem] ">
