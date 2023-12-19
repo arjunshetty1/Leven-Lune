@@ -5,6 +5,10 @@ import RelatedPrdScroller from "../../Components/RelatedPrdScroller";
 import Wrapper from "../../Components/Wrapper";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import {  useSelector,useDispatch } from "react-redux";//redux 
+import { addToCart } from "@/store/cartSlice";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Product = () => {
   const [info, setinfo] = useState(null);
@@ -13,6 +17,7 @@ const Product = () => {
   const [selectType, setselectType] = useState("");
   const [showerrmess, setshowerrmess] = useState(true);
   const [err, seterr] = useState();
+  const dispatch = useDispatch(); //redux
 
   const fetchData = async () => {
     try {
@@ -27,8 +32,22 @@ const Product = () => {
     fetchData();
   }, []);
 
+  const notify = () => {
+    toast('Product Added to Cart', {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      });
+  };
+
   return (
     <div className="w-full md:py-20">
+      <ToastContainer/>
       <Wrapper>
         <div className="flex flex-col md:flex-row md:justify-center px-10 align-middle items-center">
           <div className="left-side md:w-2/4">
@@ -86,7 +105,13 @@ const Product = () => {
             <div className="flex flex-col gap-4">
               <a
                 onClick={() => {
-                  showerrmess ? seterr(true) : seterr(false);
+                  if (showerrmess) {
+                    seterr(true);
+                    dispatch(addToCart({...info?.data[0]}));
+                    notify()
+                  } else {
+                    seterr(false);
+                  }
                 }}
                 href="#_"
                 class="inline-flex overflow-hidden mt-8 w-52 text-white bg-gray-900 rounded group"
