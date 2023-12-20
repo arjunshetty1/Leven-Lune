@@ -10,11 +10,13 @@ import { CiHeart } from "react-icons/ci";
 import { IoIosClose } from "react-icons/io";
 import { CgMenuRightAlt } from "react-icons/cg";
 import MenuMobile from "./MenuMobile";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [mobileMenu, setmobileMenu] = useState(false);
   const [showCatMenu, setshowCatMenu] = useState(false);
   const [show, setshow] = useState("translate-y-0");
+  const { cartItems } = useSelector((state) => state.cart);
   // const [lastScrollY, setlastScrollY] = useState(0);
 
   // useEffect(() => {
@@ -61,12 +63,13 @@ const Header = () => {
           cursor-pointer relative items-center"
                 >
                   <BsCart className="text-[15px] md:text-[20px]" />
+
                   <div
                     className="h-[14px] md:[18px] min-w-[14px] md:min-w-[18px] 
           rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center
           px-[2px] md:px-[5px]"
                   >
-                    5
+                    {cartItems.length}
                   </div>
                 </div>
               </Link>
