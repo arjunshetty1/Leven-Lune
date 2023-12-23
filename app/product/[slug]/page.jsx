@@ -10,7 +10,9 @@ import { addToCart } from "@/store/cartSlice";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const Product = () => {
+  
   const [info, setinfo] = useState(null);
   const path = usePathname().split("/").pop();
   const DecodedUrl = decodeURIComponent(path);
@@ -18,6 +20,7 @@ const Product = () => {
   const [showerrmess, setshowerrmess] = useState(true);
   const [err, seterr] = useState();
   const dispatch = useDispatch(); //redux
+
 
   const fetchData = async () => {
     try {

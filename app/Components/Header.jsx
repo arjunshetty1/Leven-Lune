@@ -17,14 +17,7 @@ const Header = () => {
   const [showCatMenu, setshowCatMenu] = useState(false);
   const [show, setshow] = useState("translate-y-0");
   const { cartItems } = useSelector((state) => state.cart);
-  // const [lastScrollY, setlastScrollY] = useState(0);
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", controlNavbar);
-  //   return () => {
-  //     window.removeEventListener("scroll", controlNavbar);
-  //   };
-  // }, []);
+ 
 
   return (
     <html lang="en">
