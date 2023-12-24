@@ -5,9 +5,9 @@ import { MdDeleteOutline } from "react-icons/md";
 import { useSelector } from "react-redux";
 
 const page = () => {
-  const cartItems = useSelector((state) => { // see here
-    state.cart;
-  });
+  // const cartItems = useSelector((state) => { // see here
+  //   state.cart;
+  // });
   return (
     <Wrapper>
       <p className="flex justify-center items-center text-lg font-semibold text-black">
@@ -15,7 +15,7 @@ const page = () => {
       </p>
       <div className="w-full flex md:flex-row flex-col gap-4">
         <div className=" w-[70%] left mt-11">
-          {cartItems.length > 0 && (
+          {/* {cartItems.length > 0 && ( */}
             <>
               <div className=" bg-[#9c9999] p-4 rounded-md  flex flex-col">
                 <Image className="w-20" src={prd} />
@@ -43,7 +43,7 @@ const page = () => {
                 </div>
               </div>
             </>
-          )}
+          {/* )} */}
         </div>
 
         <div className="w-[30%] right">
@@ -67,7 +67,7 @@ const page = () => {
         </div>
       </div>
 
-      {cartItems.length < 0 ===
+      {/* {cartItems.length < 0 ===
       (
         <div>
           <p>
@@ -75,7 +75,7 @@ const page = () => {
             <Link href={"/"}>Start Shoppping</Link>
           </p>
         </div>
-      )}
+      )} */}
     </Wrapper>
   );
 };
